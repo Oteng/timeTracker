@@ -407,7 +407,7 @@ class mainWindow(QDialog):
 		self.messagebox.show()
 
 	def about(self):
-		self.messagebox.setText(QString(' Have you ever found yourself so busy with your PC that you loose track of time? Well Time Tracker is here to help. Time Tracker is a light weight application that keep track of time and reminds you of the time intermittently.<br/>The interval defaults to 15 minits although it can be changed in the settings panel. This App is written with Python 2.7 by Oteng Kwaku a young guy who works as an IT instractor at Ghana Education Services<br/>The scoures code is a valable at <font color="blue">www.example.com.</font><br/>version 1.0.0'))
+		self.messagebox.setText(QString(' Have you ever found yourself so busy with your PC that you loose track of time? Well Time Tracker is here to help. Time Tracker is a light weight application that keep track of time and reminds you of the time intermittently.<br/>The interval defaults to 15 minits although it can be changed in the settings panel. This App is written with Python 2.7 by Oteng Kwaku a young guy who works as an IT instractor at Ghana Education Services<br/>The scoures code is a valable at <font color="blue">https://github.com/Oteng/timeTracker</font><br/>version 1.0.0'))
 		self.messagebox.setWindowTitle("About - Time Tracker")
 		self.messagebox.show()
 		
