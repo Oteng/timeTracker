@@ -380,11 +380,16 @@ class mainWindow(QDialog):
 
 	
 	def createActions(self):
-		self.settings = QAction('Settings', self, triggered=self.setting)
-		self.rem = QAction('Reminders', self, triggered=self.reminders)
-		self.qut = QAction('Quit', self, triggered=self.quit_)
-		self.feedback = QAction('feedback', self, triggered=self.feedBack)
-		self.abt = QAction('About', self, triggered=self.about)
+		self.settings = QAction(QIcon('settIcon.png'),'Settings', self, triggered=self.setting)
+		#self.settings.setToolTip('Change minuts of time')
+		self.rem = QAction(QIcon('clock.png'), 'Reminders', self, triggered=self.reminders)
+		#self.rem.setToolTip('Create and Manage Reminders')
+		self.qut = QAction(QIcon('appquit.png'),'Quit', self, triggered=self.quit_)
+		#self.qut.setToolTip('Close application')
+		self.feedback = QAction(QIcon('fed.png'),'feedback', self, triggered=self.feedBack)
+		#self.feedback.setToolTip('Give feedback')
+		self.abt = QAction(QIcon('abt.png'),'About', self, triggered=self.about)
+		#self.abt.setToolTip('About this application')
 
 	def createSysTrayIcon(self):
 		self.sysTrayMenu = QMenu(self)
@@ -465,9 +470,10 @@ class mainWindow(QDialog):
 			self.remProcessor.writeData(remInfo)
 		else:
 			self.remProcessor.writeData('')
-		self.messagebox.setText(QString('<b>Title: </b> %s<br/><b>Note: </b>%s<br/><b>Date: </b>%s <br/><b>Time: </b>%s' %(indexContent['title'], indexContent['note'], indexContent['dateStr'], indexContent['time'])))
+		self.messagebox.setText(QString('<b>Title: </b> %s<br/><b>Note: </b>%s<br/><b>Date: </b>%s' %(indexContent['title'], indexContent['note'], indexContent['dateStr'])))
 		self.messagebox.setWindowTitle('Reminder - Time Tracker')
 		self.messagebox.show()
+		self.runRemThread()
 
 	def quit_(self):
 		self.timeThread.arg.speak.stop()
@@ -494,9 +500,8 @@ class remThread(QThread):
 		super(remThread, self).__init__(parent)
 		self.remInfoList = None
 		self.remInfo = None
-
-	def run(self):
 		
+	def run(self):
 		if self.remInfoList != None:
 			remData =self.remInfoList.pop(0)
 			remDate = remData[0]

@@ -159,11 +159,13 @@ class timeTracker(object):
 	
 	def sayTime(self, minut):
 		""" set loop for saying the time """
+		print minut
 		self.minut = minut
 		self.speak.setProperty('rate', 100)
 		day = time.localtime().tm_mday
 		startDay = 0
 		while True:
+			print 'in time loop'
 			if startDay != time.localtime().tm_mday:
 				self.speak.say(self.getDate(time.localtime().tm_mday))
 				self.speak.runAndWait()
@@ -380,11 +382,16 @@ class mainWindow(QDialog):
 
 	
 	def createActions(self):
-		self.settings = QAction('Settings', self, triggered=self.setting)
-		self.rem = QAction('Reminders', self, triggered=self.reminders)
-		self.qut = QAction('Quit', self, triggered=self.quit_)
-		self.feedback = QAction('feedback', self, triggered=self.feedBack)
-		self.abt = QAction('About', self, triggered=self.about)
+		self.settings = QAction(QIcon('settIcon.png'),'Settings', self, triggered=self.setting)
+		#self.settings.setToolTip('Change minuts of time')
+		self.rem = QAction(QIcon('clock.png'), 'Reminders', self, triggered=self.reminders)
+		#self.rem.setToolTip('Create and Manage Reminders')
+		self.qut = QAction(QIcon('appquit.png'),'Quit', self, triggered=self.quit_)
+		#self.qut.setToolTip('Close application')
+		self.feedback = QAction(QIcon('fed.png'),'feedback', self, triggered=self.feedBack)
+		#self.feedback.setToolTip('Give feedback')
+		self.abt = QAction(QIcon('abt.png'),'About', self, triggered=self.about)
+		#self.abt.setToolTip('About this application')
 
 	def createSysTrayIcon(self):
 		self.sysTrayMenu = QMenu(self)
@@ -420,10 +427,12 @@ class mainWindow(QDialog):
 		self.timeThread = timeTrackerThread(self.minut, self)
 		self.timeThread.connect(self.timeThread, SIGNAL('newDay'), self.runRemThread)
 		if self.timeThread.isRunning():
+			print 'stoping and starting thread'
 			self.timeThread.arg.speak.stop()
 			self.timeThread.terminate()
 			self.timeThread.start()
 		else:
+			print 'starting thread afreash'
 			self.timeThread.start()
 
 	def setting(self):
@@ -465,9 +474,10 @@ class mainWindow(QDialog):
 			self.remProcessor.writeData(remInfo)
 		else:
 			self.remProcessor.writeData('')
-		self.messagebox.setText(QString('<b>Title: </b> %s<br/><b>Note: </b>%s<br/><b>Date: </b>%s <br/><b>Time: </b>%s' %(indexContent['title'], indexContent['note'], indexContent['dateStr'], indexContent['time'])))
+		self.messagebox.setText(QString('<b>Title: </b> %s<br/><b>Note: </b>%s<br/><b>Date: </b>%s' %(indexContent['title'], indexContent['note'], indexContent['dateStr'])))
 		self.messagebox.setWindowTitle('Reminder - Time Tracker')
 		self.messagebox.show()
+		self.runRemThread()
 
 	def quit_(self):
 		self.timeThread.arg.speak.stop()
@@ -483,8 +493,10 @@ class timeTrackerThread(QThread):
 		super(timeTrackerThread, self).__init__(parent)
 		self.arg = timeTracker(self)
 		self.minut = minut
+		print 'time thread created '
 
 	def run(self):
+		print 'time thread runing '
 		self.arg.sayTime(self.minut)
 
 
@@ -494,24 +506,31 @@ class remThread(QThread):
 		super(remThread, self).__init__(parent)
 		self.remInfoList = None
 		self.remInfo = None
+		print 'remThread created'
+		print self.remInfoList
+		print self.remInfo
 
 	def run(self):
-		
+		print 'remThread start'
 		if self.remInfoList != None:
 			remData =self.remInfoList.pop(0)
 			remDate = remData[0]
 			remTime = remData[1]
 			index = remData[2]
+			print remData
 			if remDate == QDate.currentDate().getDate():
 				while True:
 					if (QTime.currentTime().hour() == remTime[0]) and (remTime[1] <= QTime.currentTime().minute()):
 						indexContent = self.remInfo.pop(index)
 						self.emit(SIGNAL('remUsed'), indexContent, self.remInfo)
+						print 'finish out'
 						return None
 					elif (QTime.currentTime().hour() == remTime[0]) and (remTime[1] > QTime.currentTime().minute()): 
+						print 'sleeping 1'
 						time.sleep((remTime[1] - QTime.currentTime().minute()) * 60)
 
 					elif QTime.currentTime().hour() < remTime[0]:
+						print 'sleeping 2'
 						time.sleep((remTime[0] - QTime.currentTime().hour()) * 3600)
 
 			elif remDate < QDate.currentDate().getDate():
