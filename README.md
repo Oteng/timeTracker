@@ -25,6 +25,7 @@ Installation
 
 TODO:
 1.	Make a standalone installer for windows and mac os 
+2.	Recurring reminders 
 
 If you have any feedback question or contractive criticism or a bug email me at otengKwaku@gmail.com 
 
