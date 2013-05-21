@@ -9,23 +9,30 @@ It also demonstrates the use of pyttsx which is a text to speech engine.
 Time Tracker is a simply application the runs three threads. 
 The main thread is made up of the QSystemTrayIcon. The other secondary threads comes in when there is work to be done, or the user needs to make changes.
 If you have ever used or seen the application “SAY THE TIME”, well timeTracker is just like it but will more features  like:  the ability of a user to change the default intervals at which the time is said and also the ability of the user to create reminders. 
-Installation 
-1.  You will need the following libraries installed 
-	a.	Python 2.7 
-		http://www.python.org/download/releases/2.7.5/
-	b.	Pyttsx
-		https://pypi.python.org/pypi/pyttsx
-	c.	PyQt4
-		http://www.riverbankcomputing.com/software/pyqt/download
+Installation <br/>
+<ol>
+<li>  You will need the following libraries installed </li>
+<div style= "padding-left: 20px">
+<ul>
+	<li>	Python 2.7 </li>
+		<code> http://www.python.org/download/releases/2.7.5/ </code>
+	<li>	Pyttsx </li>
+		<code> https://pypi.python.org/pypi/pyttsx </code>
+	<li>	PyQt4 </li>
+		<code> http://www.riverbankcomputing.com/software/pyqt/download </code><br />
 		Remember to download Python 2.7 version
-2.	Double click timeTracker.pyw to start the program 
-3.	Click the system tray icon to make changes 
-4.	If you will like it to run on startup, copy the content of src to the directory 
-	C:\Users\<name>\AppData\Roaming\Microsoft\Windows\StartMenu\Programs\Startup
+</ul>
+</div>
+<li>	Double click timeTracker.pyw to start the program  </li>
+<li>	Click the system tray icon to make changes  </li>
+<li>	If you will like it to run on startup, copy the content of src to the directory </li>
+	<code>C:\Users\<name>\AppData\Roaming\Microsoft\Windows\StartMenu\Programs\Startup </code>
+</ol>
 
-TODO:
-1.	Make a standalone installer for windows and mac os 
-2.	Recurring reminders 
-
+<code style="padding: 5px 5px">TODO:</code><br/>
+<ol>
+<li>	Make a standalone installer for windows and mac os </li>
+<li>	Recurring reminders </li>
+</ol>
 If you have any feedback question or contractive criticism or a bug email me at otengKwaku@gmail.com 
 
