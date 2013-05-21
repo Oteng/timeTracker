@@ -8,7 +8,7 @@ This application demonstrates the use of PyQt’s QDialog class, QSystem Tray Ic
 It also demonstrates the use of pyttsx which is a text to speech engine. 
 Time Tracker is a simply application the runs three threads. 
 The main thread is made up of the QSystemTrayIcon. The other secondary threads comes in when there is work to be done, or the user needs to make changes.
-If you have ever used or seen the application “SAY THE TIME”, well timeTracker is just like it but will more features  like:  the ability of a user to change the default intervals at which the time is said and also the ability of the user to create reminders. 
+If you have ever used or seen the application “SAY THE TIME”, well timeTracker is just like it but with more features  like:  the ability of a user to change the default intervals at which the time is said and also the ability of the user to create reminders. 
 Installation <br/>
 <ol>
 <li>  You will need the following libraries installed </li>
