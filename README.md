@@ -34,5 +34,5 @@ Installation <br/>
 <li>	Make a standalone installer for windows and mac os </li>
 <li>	Recurring reminders </li>
 </ol>
-If you have any feedback question or contractive criticism or a bug email me at otengKwaku@gmail.com 
+
 
